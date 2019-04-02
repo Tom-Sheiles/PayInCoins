@@ -18,8 +18,7 @@ int main(int argc, char **argv){
             getline(inputFile, lines);
             inputs[i] = lines;
             cout << inputs[i] << endl;
-            i++;
-            
+            i++;            
         }
     }else{
         cout << "Could not Find \"input.txt\"" << endl;

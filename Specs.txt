@@ -1,0 +1,12 @@
+- All values needed are prime numbers
+- including 1 and the final value to be calculated
+- Calculate the total number of ways a given amount can be payed using prime coins
+
+e.g. 5 can be payed in 6 ways. one 5 coin, 2+3, 1+1+3, 1+2+2, 1+1+2, 1+1+1+1+1 
+
+- inputs:
+	1 int: money payed using all possible combinations
+	2 ints: money to be payed and number of coins that can be used
+	3 ints: money to be payed and then the range of values that should be used
+	
+- output.txt should contain the number of coins needed for each value
