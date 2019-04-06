@@ -58,8 +58,12 @@ vector <int> calculatePrimes(int value, int min, int max){
     
     
     if(min > -1 and max == -1){
+        primes.push_back(1);
         
-        cout << "min > -1 and max == -1" << endl;
+        for(int i = 2; i < value; i++){
+            if(isPrime(i))
+                primes.push_back(i);
+        }    
         
     }else if(min == -1 or max == -1){
         primes.push_back(1);
@@ -79,11 +83,12 @@ vector <int> calculatePrimes(int value, int min, int max){
     return primes;
 }
 
-void countCoins(int value, int beginRange, int endRange){
+int countCoins(int value, int beginRange, int endRange){
     
     vector <int> primeArray;
     primeArray = calculatePrimes(value, beginRange, endRange);
-    
+    //TODO: continue here. use the prime array to calculate the additions of the numbers in this function. add to an integer and return the int to the calcuate 
+    //function where it will then be added to the output file.
     
 }
 
@@ -104,7 +109,7 @@ void calculate(string *inputs, int nInputs){
 
 int main(int argc, char **argv){
     
-   /* string filePath;
+    string filePath;
     cout << "Enter the file path for \"input.txt\": ";
     cin >> filePath;
     filePath.append("\\input.txt");
@@ -128,11 +133,11 @@ int main(int argc, char **argv){
         exit(1);
     }   
 
-    calculate(inputs, i);*/
+    calculate(inputs, i);
     
-    vector <int> test;
-    test = calculatePrimes(100, 10, -1);
+    /*vector <int> test;
+    test = calculatePrimes(100, 5, 20);
     for(int i = 0; i < test.size(); i++){
         cout << test.at(i) << endl;
-    }
+    }*/
 }
