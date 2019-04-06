@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -38,20 +39,54 @@ void parseNumber(string line, int *value, int *beginRange, int *endRange){
     
 }
 
-int* calculatePrimes(int value, int min, int max){
+
+bool isPrime(int x){
     
-    int *primes;
     
+    for(int i = 2; i < x; i++){
+        if (x % i == 0){
+            return false;
+        }
+    }
+    return true;
+    
+}
+
+vector <int> calculatePrimes(int value, int min, int max){
+    
+    vector <int> primes;
+    
+    
+    if(min > -1 and max == -1){
+        
+        cout << "min > -1 and max == -1" << endl;
+        
+    }else if(min == -1 or max == -1){
+        primes.push_back(1);
+
+        for(int i = 2; i < value; i++){
+            if(isPrime(i))
+                primes.push_back(i);
+        }
+    }else if(min > -1 and max > -1){
+        
+        for(int i = min; i < max; i++){
+            if(isPrime(i))
+                primes.push_back(i);
+        }
+    }
     
     return primes;
 }
 
 void countCoins(int value, int beginRange, int endRange){
     
-    int *primeArray;
+    vector <int> primeArray;
     primeArray = calculatePrimes(value, beginRange, endRange);
     
+    
 }
+
 
 void calculate(string *inputs, int nInputs){
     
@@ -69,7 +104,7 @@ void calculate(string *inputs, int nInputs){
 
 int main(int argc, char **argv){
     
-    string filePath;
+   /* string filePath;
     cout << "Enter the file path for \"input.txt\": ";
     cin >> filePath;
     filePath.append("\\input.txt");
@@ -93,6 +128,11 @@ int main(int argc, char **argv){
         exit(1);
     }   
 
-    calculate(inputs, i);
- 
+    calculate(inputs, i);*/
+    
+    vector <int> test;
+    test = calculatePrimes(100, 10, -1);
+    for(int i = 0; i < test.size(); i++){
+        cout << test.at(i) << endl;
+    }
 }
