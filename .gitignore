@@ -8,3 +8,11 @@ Debug/s5132012_Pay_in_Coins.cpp.o.d
 PayInCoins.mk
 PayInCoins.project
 PayInCoins.txt
+.codelite/.tern-port
+.codelite/.tern-project
+.codelite/compilation.db
+.codelite/PayInCoins.session
+.codelite/PayInCoins.tags
+.codelite/refactoring.db
+Makefile
+PayInCoins.workspace

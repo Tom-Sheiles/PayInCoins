@@ -19,6 +19,9 @@ https://www.geeksforgeeks.org/combinational-sum/
 
 C:\Users\junom\Desktop\Documents\Coding\C++\PayInCoins\PayInCoins\Debug
 
+C:\Users\Wookie\Desktop
+
+
 
 Roadmap:
 	- parse inputs into the three input catagories

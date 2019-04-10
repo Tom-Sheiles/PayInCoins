@@ -42,7 +42,6 @@ void parseNumber(string line, int *value, int *beginRange, int *endRange){
 
 bool isPrime(int x){
     
-    
     for(int i = 2; i < x; i++){
         if (x % i == 0){
             return false;
@@ -56,8 +55,15 @@ vector <int> calculatePrimes(int value, int min, int max){
     
     vector <int> primes;
     
+    primes.push_back(1);
+    for(int i = 2; i < value; i++){
+        if(isPrime(i)){
+            primes.push_back(i);
+        }
+    }
     
-    if(min > -1 and max == -1){
+    
+   /* if(min > -1 and max == -1){
         primes.push_back(1);
         
         for(int i = 2; i < value; i++){
@@ -78,18 +84,68 @@ vector <int> calculatePrimes(int value, int min, int max){
             if(isPrime(i))
                 primes.push_back(i);
         }
-    }
+    }*/
     
     return primes;
+}
+
+void sumNumbers(vector <int> primeArray, vector <int> currentSum, int value, int beginRange, int endRange, int *answers, int step){
+    
+    int size = primeArray.size();
+    
+    if(value == 0){
+        if(beginRange != -1){
+            
+            if(currentSum.size() >= beginRange && currentSum.size() <= endRange){
+                for(int i = 0; i < currentSum.size(); i++){
+                    cout << currentSum.at(i);
+                }
+                cout << endl;
+                *answers = *answers + 1;
+                return;
+            }
+            
+        }else if(endRange != -1){
+            
+            cout << "ONLY ONE NYMber";
+            //TODO: KEEP GOING HERE, ADD FOR ONLY ONE NUMBER BEGIN RANGE > 0 BUT END RANGE < 0
+            
+        }else{
+            
+            for(int i = 0; i < currentSum.size(); i++){
+                cout << currentSum.at(i);
+            }
+            cout << endl;
+            *answers = *answers + 1;
+            return;
+        }
+    }
+    
+    while(step < size && (value - primeArray[step]) >= 0){
+        
+        currentSum.push_back(primeArray[step]);
+        sumNumbers(primeArray, currentSum, value - primeArray[step], beginRange, endRange, answers, step);
+        step ++;
+        currentSum.pop_back();        
+    }
+    
 }
 
 int countCoins(int value, int beginRange, int endRange){
     
     vector <int> primeArray;
-    primeArray = calculatePrimes(value, beginRange, endRange);
-    //TODO: continue here. use the prime array to calculate the additions of the numbers in this function. add to an integer and return the int to the calcuate 
-    //function where it will then be added to the output file.
+    vector <int> currentSum;
+    int answers = 0;    
+        
+    if(beginRange == -1){
+        answers++;
+    }
     
+    primeArray = calculatePrimes(value, beginRange, endRange);
+    sumNumbers(primeArray, currentSum, value, beginRange, endRange, &answers, 0);
+    cout <<"Answers: " << answers << endl;
+    
+    return answers;
 }
 
 
@@ -99,6 +155,8 @@ void calculate(string *inputs, int nInputs){
     int endRange = 0;
     int value = 0;
     
+    cout << endl;
+
     for(int i = 0; i < nInputs; i++){
         parseNumber(inputs[i], &value, &beginRange, &endRange);
         countCoins(value, beginRange, endRange);
@@ -122,6 +180,7 @@ int main(int argc, char **argv){
     int i = 0;
     if(inputFile.is_open())
     {
+        cout << "Inputs: " << endl;
         while(!inputFile.eof()){
             getline(inputFile, lines);
             inputs[i] = lines;
@@ -140,4 +199,6 @@ int main(int argc, char **argv){
     for(int i = 0; i < test.size(); i++){
         cout << test.at(i) << endl;
     }*/
+    
+    
 }
