@@ -16,3 +16,4 @@ PayInCoins.txt
 .codelite/refactoring.db
 Makefile
 PayInCoins.workspace
+Debug/Output.txt
