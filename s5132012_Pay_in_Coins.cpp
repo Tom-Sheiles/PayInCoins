@@ -5,8 +5,10 @@
 #include <sstream>
 #include <vector>
 #include <time.h>
+#include <map>
 
 using namespace std;
+int countCoins(int , int , int );
 
 // Takes an input string and assigns each number in the string to value,beginRange and endRange
 void parseNumber(string line, int *value, int *beginRange, int *endRange){
@@ -68,12 +70,24 @@ vector <int> calculatePrimes(int value, int min, int max){
     return primes;
 }
 
+int findKey(vector<int> x){
+    
+    int key = 0;
+    
+    for(int i = 0; i < x.size(); i++){
+        key += x.at(i);
+    }
+    return key;
+    
+}
+
 // Main function for calculating sum. takes array of possible numbers, an empty array and the range of values.
 // increments answers int when a valid solution is found 
 void sumNumbers(vector <int> primeArray, vector <int> currentSum, int value, int beginRange, int endRange, int *answers, int step){
     
     int size = primeArray.size();
     int sumSize = currentSum.size();
+    
  
     if(value < 0){
         return;
@@ -83,7 +97,11 @@ void sumNumbers(vector <int> primeArray, vector <int> currentSum, int value, int
         if(beginRange > 0 && endRange > 0){
             
             if(sumSize >= beginRange && sumSize <= endRange){
+                if(value == 300)
+                    cout << "found" << endl;
                 *answers = *answers + 1;
+                return;
+            }else{
                 return;
             }
             
@@ -91,6 +109,8 @@ void sumNumbers(vector <int> primeArray, vector <int> currentSum, int value, int
             
             if(sumSize == beginRange){
                 *answers = *answers + 1;
+                return;
+            }else{
                 return;
             }
             
@@ -106,6 +126,7 @@ void sumNumbers(vector <int> primeArray, vector <int> currentSum, int value, int
         // currentSum.push_back(primeArray[step]);
         currentSum.insert(currentSum.end(), primeArray[0], primeArray[step]);
         sumNumbers(primeArray, currentSum, value - primeArray[step], beginRange, endRange, answers, step);
+        //sumNumbers(primeArray, currentSum, value - primeArray[step], memo,  beginRange, endRange, answers, step);
         step ++;
         currentSum.pop_back();        
     }
@@ -168,7 +189,7 @@ void calculate(string *inputs, int nInputs){
     
 }
 
-
+// takes input.txt from command line or specified in the program if no command line input is given
 int main(int argc, char **argv){
     
     string filePath;
@@ -205,7 +226,6 @@ int main(int argc, char **argv){
         exit(1);
     }   
 
-    
     calculate(inputs, i);
     
     inputFile.close();
