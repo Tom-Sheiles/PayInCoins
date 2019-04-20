@@ -22,12 +22,3 @@ C:\Users\junom\Desktop\Documents\Coding\C++\PayInCoins\PayInCoins\Debug
 C:\Users\Wookie\Desktop
 
 
-
-Roadmap:
-	- parse inputs into the three input catagories
-	- for one input: 
-		- determine a list of all prime numbers up to the value
-		- find the additions of these that add to the value
-		- for each one add to an integer for the final value
-		- 
-	
